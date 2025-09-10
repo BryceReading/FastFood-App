@@ -7,7 +7,10 @@ import {useEffect} from "react";
 import CartButton from "@/components/CartButton";
 import cn from "clsx";
 import MenuCard from "@/components/MenuCard";
-import  {MenuItem } from "@/type";
+import  { MenuItem } from "@/type";
+
+import SearchBar from "@/components/SearchBar";
+import Filter from '@/components/Filter';
 
 
 const search = () => {
@@ -29,8 +32,6 @@ const search = () => {
     rating: doc.rating || 1,
     type: doc.type || '',
   })) ?? [];
-
-
 
   useEffect(() => {
     refetch({ category, query, limit: 6 });
@@ -67,9 +68,9 @@ const search = () => {
                 <CartButton />
               </View>
 
-            <Text> Search Input </Text>
+            <SearchBar />
 
-            <Text> Filter </Text>
+            <Filter categories={categories} />         
           </View>
        )}
         ListEmptyComponent={()=> !loading && <Text>No Results</Text>}
